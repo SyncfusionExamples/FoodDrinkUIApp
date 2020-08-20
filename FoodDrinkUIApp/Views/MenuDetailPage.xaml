@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:PanCake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
+             x:Class="FoodDrinkUIApp.Views.MenuDetailPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <!-- Main structure-->
+             <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,*" ColumnDefinitions="*,Auto">
+
+                <!-- Main image-->
+                <PanCake:PancakeView CornerRadius="0,0,70,0" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" IsClippedToBounds="true">
+                    <Image Source="Dessert" VerticalOptions="Start" Aspect="AspectFill"  HeightRequest="{OnPlatform Android='260', iOS='395'}"/> 
+                </PanCake:PancakeView>
+
+                <!-- Corner icon-->
+                  <!-- Corner left rounded wall-->
+                <PanCake:PancakeView  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"  Grid.RowSpan="2" HorizontalOptions="End" VerticalOptions="Start" WidthRequest="85" CornerRadius="0,0,50,0" HeightRequest="120">
+                    <Button Grid.Row="0" ImageSource="ShoppingCart" BackgroundColor="{StaticResource Branding}" />
+                </PanCake:PancakeView>
+                  <!--Counter button-->
+                <Button Grid.Row="0" Grid.Column="1" BackgroundColor="White" HorizontalOptions="End" TranslationY="42" TranslationX="-19" VerticalOptions="Start" TextColor="{StaticResource Branding}" FontSize="10" Text="2" HeightRequest="20" WidthRequest="20" CornerRadius="10"/>
+
+                 <!-- Main information-->
+                  <!--Dessert name-->
+                <Label Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Text="Peanut Smoothie" Padding="35,20,0,0"  FontAttributes="Bold" FontSize="29"/>
+                  <!--Star component-->
+                 <rating:SfRating Grid.Column="0" Grid.Row="2" x:Name="sfRating"  ItemCount="5" Value="5" ReadOnly="true" ItemSize="25" HeightRequest="35" HorizontalOptions="StartAndExpand" Margin="30,0,0,0"/>
+                 <Label Grid.Column="1" Grid.Row="2" Text="4.8" HorizontalOptions="Start" FontAttributes="Bold" TextColor="#fe9a0f" FontSize="18" Padding="20,0,0,0"/>
+
+                  <!--Rounded button-->
+                <PanCake:PancakeView  Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Padding="0,0,40,0">
+                    <Button VerticalOptions="Center" ImageSource="Heart" HorizontalOptions="End" BackgroundColor="{StaticResource Branding}" WidthRequest="56" HeightRequest="56" CornerRadius="28"/>
+                </PanCake:PancakeView>
+             
+                <!-- Description -->
+               <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" FontSize="20" Margin="35,5,30,0" Text="Creamy peanut butter and frozen and dark chocolate with some cacao all mixed with frozen, berries, serverd with cherry on top." TextColor="Silver"/>
+             
+                 <!--Menu-->
+                <CollectionView Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"
+                                ItemsSource="{Binding menu}"
+                                Margin="35,20,30,20"
+                                HeightRequest="90"
+                                VerticalOptions="FillAndExpand"
+                                HorizontalScrollBarVisibility="Never" 
+                                ItemsLayout="HorizontalList">
+                             <CollectionView.ItemTemplate>
+                                   <DataTemplate>
+                                       <StackLayout Padding="0,0,15,0">
+                                           <Frame HeightRequest="46" WidthRequest="35" HasShadow="False" BackgroundColor="{StaticResource SecundaryBranding}" CornerRadius="23">
+                                               <Grid RowDefinitions="Auto,Auto" VerticalOptions="StartAndExpand">
+                                                    <Image Grid.Row="0" HeightRequest="{OnPlatform Android='16',iOS='30'}" Source="{Binding Icon}"/>
+                                                    <Label Grid.Row="1" Text="{Binding Name}" FontSize="10" HorizontalTextAlignment="Center"/>
+                                               </Grid>
+                                           </Frame>
+                                       </StackLayout>
+                                   </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                  <!--Cart information-->
+                    <!--Price-->
+                <Label Grid.Row="5" Grid.Column="0" Text="$12.00" Padding="45,0,0,25" FontSize="20" FontAttributes="Bold" VerticalOptions="End"/>
+                   <!--Add to Cart button-->
+                <PanCake:PancakeView Grid.Row="5" Grid.Column="1" CornerRadius="50,0,0,0" IsClippedToBounds="true" HeightRequest="75" VerticalOptions="End">
+                     <Button BackgroundColor="{StaticResource Branding}" TextColor="White" Text="Add to cart" FontSize="22"  FontAttributes="Bold" WidthRequest="220"/>
+                </PanCake:PancakeView> 
+
+             </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
